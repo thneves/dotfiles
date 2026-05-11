@@ -1,0 +1,91 @@
+[window]
+opacity = 0.98
+decorations = "full"
+dynamic_title = true
+
+[window.padding]
+x = 8
+y = 8
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 11.5
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[cursor]
+blink_interval = 500
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[selection]
+save_to_clipboard = true
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["-l", "-c", "zellij attach -c main || zellij -s main"]
+
+[colors.primary]
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[colors.cursor]
+text   = "#1a1b26"
+cursor = "#c0caf5"
+
+[colors.selection]
+text       = "#c0caf5"
+background = "#283457"
+
+[colors.normal]
+black   = "#15161e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#c0caf5"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#ff9e64"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#db4b4b"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"

@@ -1,0 +1,172 @@
+# Tokyo Night palette for starship
+# Docs: https://starship.rs/config
+
+add_newline = true
+command_timeout = 1000
+
+format = """
+[](color_bg1)\
+$os\
+$username\
+[](bg:color_bg2 fg:color_bg1)\
+$directory\
+[](fg:color_bg2 bg:color_bg3)\
+$git_branch\
+$git_status\
+[](fg:color_bg3 bg:color_bg4)\
+$nodejs\
+$python\
+$rust\
+$golang\
+$lua\
+$java\
+$c\
+[](fg:color_bg4 bg:color_bg5)\
+$docker_context\
+$kubernetes\
+$aws\
+[](fg:color_bg5 bg:color_time)\
+$time\
+[ ](fg:color_time)\
+$line_break\
+$character"""
+
+palette = "tokyonight"
+
+[palettes.tokyonight]
+color_fg     = "#c0caf5"
+color_bg1    = "#1a1b26"
+color_bg2    = "#24283b"
+color_bg3    = "#414868"
+color_bg4    = "#565f89"
+color_bg5    = "#3b4261"
+color_time   = "#283457"
+color_red    = "#f7768e"
+color_orange = "#ff9e64"
+color_yellow = "#e0af68"
+color_green  = "#9ece6a"
+color_cyan   = "#7dcfff"
+color_blue   = "#7aa2f7"
+color_purple = "#bb9af7"
+
+[os]
+disabled = false
+style = "bg:color_bg1 fg:color_blue"
+
+[os.symbols]
+Debian   = " "
+Ubuntu   = " "
+Arch     = " "
+Macos    = " "
+Linux    = " "
+Windows  = "󰍲 "
+Fedora   = " "
+
+[username]
+show_always = true
+style_user = "bg:color_bg1 fg:color_fg"
+style_root = "bg:color_bg1 fg:color_red"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:color_bg2 fg:color_cyan"
+format = "[ $path ]($style)"
+truncation_length = 4
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music"     = " "
+"Pictures"  = " "
+"code"      = " "
+
+[git_branch]
+symbol = ""
+style = "bg:color_bg3 fg:color_fg"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:color_bg3 fg:color_red"
+format = '[$all_status$ahead_behind ]($style)'
+conflicted = "= "
+ahead      = "⇡${count} "
+behind     = "⇣${count} "
+diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
+up_to_date = ""
+untracked  = "?${count} "
+stashed    = "$ "
+modified   = "!${count} "
+staged     = "+${count} "
+renamed    = "» "
+deleted    = "✘ "
+
+[nodejs]
+symbol = ""
+style = "bg:color_bg4 fg:color_green"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = ""
+style = "bg:color_bg4 fg:color_yellow"
+format = '[ $symbol ($version)(\($virtualenv\)) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:color_bg4 fg:color_orange"
+format = '[ $symbol ($version) ]($style)'
+
+[golang]
+symbol = ""
+style = "bg:color_bg4 fg:color_cyan"
+format = '[ $symbol ($version) ]($style)'
+
+[lua]
+symbol = ""
+style = "bg:color_bg4 fg:color_blue"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = ""
+style = "bg:color_bg4 fg:color_red"
+format = '[ $symbol ($version) ]($style)'
+
+[c]
+symbol = ""
+style = "bg:color_bg4 fg:color_purple"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:color_bg5 fg:color_blue"
+format = '[ $symbol $context ]($style)'
+
+[kubernetes]
+symbol = "󰠳"
+style = "bg:color_bg5 fg:color_blue"
+format = '[ $symbol $context ]($style)'
+disabled = true
+
+[aws]
+symbol = ""
+style = "bg:color_bg5 fg:color_orange"
+format = '[ $symbol $profile ]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_time fg:color_fg"
+format = '[ 󰥔 $time ]($style)'
+
+[cmd_duration]
+min_time = 2000
+style = "fg:color_yellow"
+format = "took [$duration]($style) "
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[❯](bold fg:color_green)"
+error_symbol   = "[❯](bold fg:color_red)"
+vimcmd_symbol  = "[❮](bold fg:color_purple)"
