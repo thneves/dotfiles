@@ -1,0 +1,42 @@
+name: Lint configs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  zsh-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+
+      - name: zsh -n .zshrc
+        run: zsh -n .zshrc
+
+  toml-parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate alacritty.toml
+        run: python -c "import tomllib; tomllib.load(open('.config/alacritty/alacritty.toml','rb'))"
+
+      - name: Validate starship.toml
+        run: python -c "import tomllib; tomllib.load(open('.config/starship.toml','rb'))"
+
+  bash-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: bash -n bootstrap script
+        run: bash -n .local/bin/dotfiles-bootstrap.sh
