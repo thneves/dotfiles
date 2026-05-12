@@ -99,6 +99,33 @@ else
     log "lazygit already present, skipping"
 fi
 
+# ---------- neovim (stable, latest) ----------
+# Apt nvim is too old for modern plugin ecosystem (LazyVim needs 0.9+).
+NVIM_DIR="$HOME/.local/share/nvim-stable"
+if [ ! -x "$NVIM_DIR/bin/nvim" ]; then
+    log "Installing neovim stable tarball"
+    cd "$TMP"
+    curl -fLO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    mkdir -p "$NVIM_DIR"
+    tar -xzf nvim-linux-x86_64.tar.gz -C "$NVIM_DIR" --strip-components=1
+    ln -sf "$NVIM_DIR/bin/nvim" "$LOCAL_BIN/nvim"
+else
+    log "neovim stable already present, skipping"
+fi
+
+# ---------- LazyVim plugin sync (config tracked by bare-repo) ----------
+if [ -f "$HOME/.config/nvim/init.lua" ]; then
+    log "Bootstrapping LazyVim plugins (headless sync)"
+    timeout 180 "$LOCAL_BIN/nvim" --headless "+Lazy! sync" +qa 2>/dev/null || true
+    log "Installing Mason LSP/formatter packages (may take a couple minutes)"
+    timeout 300 "$LOCAL_BIN/nvim" --headless \
+        "+Lazy load mason.nvim" \
+        "+MasonInstall gofumpt goimports golangci-lint erb-lint hadolint markdown-toc markdownlint-cli2 ruby-lsp gopls" \
+        "+lua vim.defer_fn(function() vim.cmd('qall!') end, 270000)" 2>/dev/null || true
+else
+    log "WARNING: ~/.config/nvim/init.lua missing. Check out bare-repo first."
+fi
+
 # ---------- zellij + alacritty (assumed installed via cargo) ----------
 if ! have zellij; then
     log "WARNING: zellij not found. Install via cargo: cargo install --locked zellij"
