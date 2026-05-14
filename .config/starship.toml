@@ -55,7 +55,7 @@ Fedora   = " "
 
 [username]
 show_always = true
-style_user = "bg:color_bg1 fg:color_green"
+style_user = "bg:color_bg1 fg:color_cyan"
 style_root = "bg:color_bg1 fg:color_red"
 format = '[  $user ]($style)'
 
