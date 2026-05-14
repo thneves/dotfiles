@@ -6,22 +6,13 @@ command_timeout = 1000
 
 format = """
 [](color_bg1)\
-$os\
 $username\
 [](bg:color_bg2 fg:color_bg1)\
 $directory\
 [](fg:color_bg2 bg:color_bg3)\
 $git_branch\
 $git_status\
-[](fg:color_bg3 bg:color_bg4)\
-$nodejs\
-$python\
-$rust\
-$golang\
-$lua\
-$java\
-$c\
-[](fg:color_bg4 bg:color_bg5)\
+[](fg:color_bg3 bg:color_bg5)\
 $docker_context\
 $kubernetes\
 $aws\
@@ -50,7 +41,7 @@ color_blue   = "#7aa2f7"
 color_purple = "#bb9af7"
 
 [os]
-disabled = false
+disabled = true
 style = "bg:color_bg1 fg:color_blue"
 
 [os.symbols]
@@ -102,39 +93,25 @@ renamed    = "» "
 deleted    = "✘ "
 
 [nodejs]
-symbol = ""
-style = "bg:color_bg4 fg:color_green"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [python]
-symbol = ""
-style = "bg:color_bg4 fg:color_yellow"
-format = '[ $symbol ($version)(\($virtualenv\)) ]($style)'
+disabled = true
 
 [rust]
-symbol = ""
-style = "bg:color_bg4 fg:color_orange"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [golang]
-symbol = ""
-style = "bg:color_bg4 fg:color_cyan"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [lua]
-symbol = ""
-style = "bg:color_bg4 fg:color_blue"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [java]
-symbol = ""
-style = "bg:color_bg4 fg:color_red"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [c]
-symbol = ""
-style = "bg:color_bg4 fg:color_purple"
-format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [docker_context]
 symbol = ""
